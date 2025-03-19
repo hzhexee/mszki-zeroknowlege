@@ -4,7 +4,10 @@ import json
 import logging
 import random
 from typing import Optional, Dict, Any
-from fiat_shamir.authentication import fiat_shamir_authenticate
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
+from fiatshamir.authentication import fiat_shamir_authenticate
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger('ZKP-Client')

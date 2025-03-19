@@ -4,9 +4,9 @@ import json
 import sys
 import os
 
-# Добавляем корневую директорию проекта в sys.path чтобы импортировать client
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from client.client import send_to_server, receive_from_server
+# Remove this import from the top level
+# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+# from client.client import send_to_server, receive_from_server
 
 logger = logging.getLogger('Fiat-Shamir')
 
@@ -22,6 +22,9 @@ def fiat_shamir_authenticate(private_key, n):
     Returns:
         bool: True если аутентификация успешна, иначе False
     """
+    # Import inside the function to avoid circular import
+    from client.client import send_to_server, receive_from_server
+    
     try:
         # Шаг 1: Генерируем случайное r и вычисляем x = r² mod n
         r = randint(1, n - 1)
